@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<p><br></p>
+<style>
+    body{
+		background-color: #83b4e9;
+	}
+
+	input{
+		width: 300px;
+		padding: 5px 5px;
+		margin: 5px 0;
+		box-sizing: border-box;
+	}
+
+	input::placeholder {
+	  color: #d3d3d3;
+	}
+
+	.submit{
+		background-color: #063e83;
+	}
+
+	.center-column{
+		width:400px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+		
+	}
+
+	.item-row{
+		background-color: #c8afe1;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 3px;
+		color: rgb(20, 19, 19);
+		font-size: 17px;
+		font-weight:600;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+
+	.btn-danger{
+		background-color: #ff1919;
+		border-color: #ff1919;
+        color: #d3d3d3;
+	}
+</style>
+
+<h1 align="center">Topluluk Ekle</h1>
+<div class="center-column">
+
+	<form method="POST" action="/" autocomplete="off" style="text-align:center">
+		{% csrf_token %}
+		{{form.title}}
+		<input class="btn btn-info" type="submit" name="Create_Club" value="Grup Ekle">
+	</form>
+	
+
+	<div class="todo-list">
+
+	{% for club in clubs %}
+		<div class="item-row">
+
+			<span>{{club}}</span>
+			
+			<a class="btn btn-sm btn-danger" href="{% url 'delete_club' club.id %}" 
+			style="float:right; margin:5px;">Sil</a>
+			<a class="btn btn-sm btn-info" href="{% url 'update_club' club.id %}" 
+			style="float:right; margin:5px;">Düzenle</a>
+		</div>
+	{% endfor %}
+
+	<a class="btn btn-info" href="/table" style=" margin-top:0px; margin-left: 60px; width: fit-content ">Etkinlik Eklemek İçin Tıklayınız</a>
+	</div>
+</div>
+
+
+
